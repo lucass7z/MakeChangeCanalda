@@ -25,7 +25,7 @@ def transitive_closure(matrix):
     return matrix
 def main():
     try:
-        matrixExcel = pd.read_excel('MatriceAdjacente.xlsx')
+        matrixExcel = pd.read_excel('dynamic-transportation/MatriceAdjacente.xlsx')
         matrixExcel.set_index('Location', inplace=True)
         return matrixExcel
     except:
@@ -63,7 +63,7 @@ def main():
         road_matrix.set_index('Location', inplace=True)
         
         #Save the road_matrix to an excel file
-        road_matrix.to_excel('MatriceAdjacente.xlsx', index=True)
+        road_matrix.to_excel('dynamic-transportation/MatriceAdjacente.xlsx', index=True)
         return road_matrix
     
 
