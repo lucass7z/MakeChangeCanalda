@@ -161,5 +161,32 @@ def cutAndPriceAndShare():
             solutions.append((L[i], bestSolution[i]))
         headers = ["Coin", "Quantity"]
         print(tabulate(solutions, headers, tablefmt="pretty"))
-cutAndPriceAndShare()
-    
+
+
+
+def main():
+    choice = input("Choisissez l'algorithme à utiliser :")
+    try:
+        choice = int(choice)
+        if(choice < 1 or choice > 4):
+            print("Veuillez entrer un nombre entre 1 et 4")
+            main()
+        if(choice == 1):
+            greedyOrdered()
+        elif(choice == 2):
+            recursiveAll()
+        elif(choice == 3):
+            recursiveBest()
+        elif(choice == 4):
+            cutAndPriceAndShare
+    except:
+        print("Veuillez entrer un nombre valide")
+        main()
+
+if __name__ == "__main__":
+    #recupérer le choix de l'utilisateur
+    print("1. GreedyOrdered")
+    print("2. Recursive dynamic programming print All solutions")
+    print("3. Recursive dynamic programming print Best solution only")
+    print("4. Recursive dynamic programming print at new Best solution")
+    main()

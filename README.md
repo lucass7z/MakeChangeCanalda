@@ -57,14 +57,8 @@ Votre environnement est maintenant configuré avec toutes les dépendances néce
 Après avoir installé les dépendances, vous pouvez lancer le projet avec la commande :
 
 ```bash
-python Exercice/python.py <func>
+python Exercice/python.py
 ```
-
-Avec func :
-```bash
-    - 
-```
-
 
 ## Contact
 
