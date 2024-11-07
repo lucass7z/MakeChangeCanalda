@@ -178,7 +178,7 @@ def main():
         elif(choice == 3):
             recursiveBest()
         elif(choice == 4):
-            cutAndPriceAndShare
+            cutAndPriceAndShare()
     except:
         print("Veuillez entrer un nombre valide")
         main()
