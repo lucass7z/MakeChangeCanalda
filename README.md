@@ -15,10 +15,31 @@ Avant de commencer, assurez-vous d'avoir les éléments suivants installés :
 
 ## Exercice Make Change Money
 
-### Installation et Configuration de l'Environnement
+## C++
+
+### Installation
+Pour utiliser la méthode C++ et donc réaliser la première partie de l'exercice.
+Merci de réaliser ces commandes :
+```bash
+cd Exercice
+make clean all
+```
+### Utilisation
+Après avoir make le projet, vous pouvez lancer le projet avec la commande :
+
+```bash
+make run
+```
+
+#### List L
+Vous pouvez modifier la liste L avec le fichier **L.txt** qui se trouve dans Exercice/L.txt. Merci de bien repecter la casse : Coin1,Coin2,Coin3... 
+
+## Python
+
+#### Installation et Configuration de l'Environnement
 
 Suivez les étapes ci-dessous pour installer et configurer l'environnement virtuel avec les dépendances requises.
-#### 1. Créer un Environnement Virtuel
+##### 1. Créer un Environnement Virtuel
 
 Il est recommandé de créer un environnement virtuel pour isoler les dépendances du projet. Vous pouvez le faire avec la commande suivante :
 
@@ -28,7 +49,7 @@ python -m venv env
 
 Cela crée un environnement virtuel nommé `env` dans le répertoire courant.
 
-#### 2. Activer l’Environnement Virtuel
+##### 2. Activer l’Environnement Virtuel
 
 Activez l’environnement virtuel pour que `pip` installe les dépendances dans cet environnement spécifique :
 
@@ -42,7 +63,7 @@ Activez l’environnement virtuel pour que `pip` installe les dépendances dans 
   source env/bin/activate
   ```
 
-#### 3. Installer les Dépendances
+##### 3. Installer les Dépendances
 
 Une fois l’environnement virtuel activé, installez les dépendances en utilisant le fichier `requirements.txt` :
 
@@ -52,7 +73,7 @@ pip install -r requirements.txt
 
 Votre environnement est maintenant configuré avec toutes les dépendances nécessaires pour exécuter le projet.
 
-## Utilisation
+### Utilisation
 
 Après avoir installé les dépendances, vous pouvez lancer le projet avec la commande :
 
@@ -60,7 +81,8 @@ Après avoir installé les dépendances, vous pouvez lancer le projet avec la co
 python Exercice/python.py
 ```
 
-### List L
+#### List L
+Vous pouvez modifier la liste L avec le fichier **L.txt** qui se trouve dans Exercice/L.txt. Merci de bien repecter la casse : Coin1,Coin2,Coin3... 
 
 ## Contact
 
