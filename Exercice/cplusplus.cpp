@@ -31,7 +31,7 @@ void printSolution(const std::vector<CoinQuantity>& solution) {
 int main() {
     double m = 12.35;
     std::vector<double> L;
-    std::ifstream file("L.txt");
+    std::ifstream file("Exercice/L.txt");
     if (file.is_open()) {
         std::string line;
         while (std::getline(file, line)) {

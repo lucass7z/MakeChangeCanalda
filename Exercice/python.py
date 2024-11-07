@@ -1,9 +1,13 @@
 from tabulate import tabulate
 import time
+import math
 m = 12.35
-with open('L.txt', 'r') as file:
+
+#On utilise le fichier L.txt pour lire les valeurs de L [coins1, coins2, ...]
+with open('Exercice/L.txt', 'r') as file:
     L = [float(num) for line in file for num in line.strip().split(',')]
 
+#1 GreedyOrdered
 def calculate1(m, L):
     S_Fifo = []
     for coin in L:
@@ -12,13 +16,13 @@ def calculate1(m, L):
         m -= coin * count
         m = round(m, 2)
     return S_Fifo
-solution = calculate1(m, L)
-headers = ["Coin", "Quantity"]
-print(tabulate(solution, headers, tablefmt="pretty"))
+def greedyOrdered():
+    solution = calculate1(m, L)
+    headers = ["Coin", "Quantity"]
+    print(tabulate(solution, headers, tablefmt="pretty"))
 
 
-
-#2a
+#2a Recursive dynamic programming
 
 
 S_fifo = []
@@ -46,11 +50,116 @@ def RestartCalculate(L, m, i, S_fifo):
             RestartCalculate(L, m - j * L[i], i + 1, S_fifo)
             S_fifo.pop() 
 
-# Lancer l'algorithme et un timer
-start_time = time.time()
-RestartCalculate(L, m, 0, S_fifo)
-end_time = time.time()
-if(solution_count == 0):
-    print("Aucune solution trouvée")
-else:
-    print(f"L'algorithme a trouvé {solution_count} combinaisons. Ceci en {round(end_time - start_time,2)} secondes.")
+
+def recursiveAll():
+    # Lancer l'algorithme et un timer
+    start_time = time.time()
+    RestartCalculate(L, m, 0, S_fifo)
+    end_time = time.time()
+    if(solution_count == 0):
+        print("Aucune solution trouvée")
+    else:
+        print(f"L'algorithme a trouvé {solution_count} combinaisons. Ceci en {round(end_time - start_time,2)} secondes.")
+    
+
+#2b Recursive dynamic programming Best solution only
+
+S_fifo = []
+solution_count = 0
+bestSolution = ""
+bestSolutionCoinsCount = math.inf
+def RestartCalculate2b(L, m, i, S_fifo):
+    global solution_count
+    global bestSolution
+    global bestSolutionCoinsCount
+    
+    # Arrondi m à 2 décimales pour éviter les erreurs de précision
+    m = round(m, 2)
+    
+    if m == 0:
+        #Compter le nombre de coins
+        coinsCount = 0
+        for coin in S_fifo:
+            coinsCount += coin
+        if(coinsCount < bestSolutionCoinsCount):
+            bestSolutionCoinsCount = coinsCount
+            bestSolution = S_fifo.copy()
+        solution_count += 1 
+        return
+    
+    
+    elif i >= len(L):
+        return  # Pas de solution
+    
+    else:
+        for j in range(int(m / L[i]) + 1):
+            S_fifo.append(j)
+            RestartCalculate2b(L, m - j * L[i], i + 1, S_fifo)
+            S_fifo.pop() 
+
+def recursiveBest():
+    # Lancer l'algorithme et un timer
+    start_time = time.time()
+    RestartCalculate2b(L, m, 0, S_fifo)
+    end_time = time.time()
+    if(solution_count == 0):
+        print("Aucune solution trouvée")
+    else:
+        print(f"L'algorithme a trouvé {solution_count} combinaisons. Ceci en {round(end_time - start_time,2)} secondes. La meilleure solution est :")
+        solutions = []
+        for i in range(len(bestSolution)):
+            solutions.append((L[i], bestSolution[i]))
+        headers = ["Coin", "Quantity"]
+        print(tabulate(solutions, headers, tablefmt="pretty"))
+        
+# 3 Recursive dynamic programming at new Best solution 
+S_fifo = []
+solution_count = 0
+bestSolution = ""
+bestSolutionCoinsCount = math.inf
+def RestartCalculate3(L, m, i, S_fifo):
+    global solution_count
+    global bestSolution
+    global bestSolutionCoinsCount
+    
+    # Arrondi m à 2 décimales pour éviter les erreurs de précision
+    m = round(m, 2)
+    
+    if m == 0:
+        #Compter le nombre de coins
+        coinsCount = 0
+        for coin in S_fifo:
+            coinsCount += coin
+        if(coinsCount < bestSolutionCoinsCount):
+            bestSolutionCoinsCount = coinsCount
+            bestSolution = S_fifo.copy()
+            print(f"Nouvelle meilleure solution : {bestSolution}")
+        solution_count += 1 
+        return
+    
+    
+    elif i >= len(L):
+        return  # Pas de solution
+    
+    else:
+        for j in range(int(m / L[i]) + 1):
+            S_fifo.append(j)
+            RestartCalculate3(L, m - j * L[i], i + 1, S_fifo)
+            S_fifo.pop() 
+
+def cutAndPriceAndShare():
+    # Lancer l'algorithme et un timer
+    start_time = time.time()
+    RestartCalculate3(L, m, 0, S_fifo)
+    end_time = time.time()
+    if(solution_count == 0):
+        print("Aucune solution trouvée")
+    else:
+        print(f"L'algorithme a trouvé {solution_count} combinaisons. Ceci en {round(end_time - start_time,2)} secondes. La meilleure solution est :")
+        solutions = []
+        for i in range(len(bestSolution)):
+            solutions.append((L[i], bestSolution[i]))
+        headers = ["Coin", "Quantity"]
+        print(tabulate(solutions, headers, tablefmt="pretty"))
+cutAndPriceAndShare()
+    
