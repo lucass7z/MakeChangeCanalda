@@ -16,7 +16,7 @@ def calculate1(m, L):
         m -= coin * count
         m = round(m, 2)
     return S_Fifo
-def greedyOrdered():
+def greedyOrderedDeso():
     solution = calculate1(m, L)
     headers = ["Coin", "Quantity"]
     print(tabulate(solution, headers, tablefmt="pretty"))
@@ -117,10 +117,12 @@ S_fifo = []
 solution_count = 0
 bestSolution = ""
 bestSolutionCoinsCount = math.inf
+nbBestSolution = 0
 def RestartCalculate3(L, m, i, S_fifo):
     global solution_count
     global bestSolution
     global bestSolutionCoinsCount
+    global nbBestSolution
     
     # Arrondi m à 2 décimales pour éviter les erreurs de précision
     m = round(m, 2)
@@ -134,6 +136,7 @@ def RestartCalculate3(L, m, i, S_fifo):
             bestSolutionCoinsCount = coinsCount
             bestSolution = S_fifo.copy()
             print(f"Nouvelle meilleure solution : {bestSolution}")
+            nbBestSolution += 1
         solution_count += 1 
         return
     
@@ -155,7 +158,7 @@ def cutAndPriceAndShare():
     if(solution_count == 0):
         print("Aucune solution trouvée")
     else:
-        print(f"L'algorithme a trouvé {solution_count} combinaisons. Ceci en {round(end_time - start_time,2)} secondes. La meilleure solution est :")
+        print(f"L'algorithme a trouvé {solution_count} combinaisons dont {nbBestSolution} sont passées par l'état Meilleure Solution. Ceci en {round(end_time - start_time,2)} secondes. La meilleure solution est :")
         solutions = []
         for i in range(len(bestSolution)):
             solutions.append((L[i], bestSolution[i]))
@@ -171,8 +174,9 @@ def main():
         if(choice < 1 or choice > 4):
             print("Veuillez entrer un nombre entre 1 et 4")
             main()
+            return
         if(choice == 1):
-            greedyOrdered()
+            greedyOrderedDeso()
         elif(choice == 2):
             recursiveAll()
         elif(choice == 3):
@@ -185,7 +189,7 @@ def main():
 
 if __name__ == "__main__":
     #recupérer le choix de l'utilisateur
-    print("1. GreedyOrdered")
+    print("1. GreedyOrdered / Deso")
     print("2. Recursive dynamic programming print All solutions")
     print("3. Recursive dynamic programming print Best solution only")
     print("4. Recursive dynamic programming print at new Best solution")
