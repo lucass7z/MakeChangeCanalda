@@ -3,7 +3,7 @@
 
 ## Description
 
-MakeChangeCanalda est un projet visant à [décrire brièvement l'objectif et le contexte de votre projet]. Ce projet utilise Python et diverses dépendances gérées via `pip`.
+MakeChangeCanalda est un projet visant à trouver le nombre minimum de pièces à rendre pour un montant donné, en utilisant différent algorithmes. Ce projet utilise Python et diverses dépendances gérées via `pip`.
 
 ## Prérequis
 
